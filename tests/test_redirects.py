@@ -1,8 +1,7 @@
 import allure
 import pytest
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from pages.main_page import MainPage
+from data.urls import Urls
 
 
 @allure.feature('Редиректы')
@@ -22,8 +21,7 @@ class TestRedirects:
         main_page.click_scooter_logo()
         
         # Проверяем, что остались на главной странице
-        current_url = driver.current_url
-        assert current_url == 'https://qa-scooter.praktikum-services.ru/'
+        main_page.assert_on_main_page()
     
     @allure.story('Логотип Яндекса')
     @allure.title('Проверка перехода на Дзен по клику на логотип Яндекса')
@@ -31,23 +29,8 @@ class TestRedirects:
         """Проверка: при клике на логотип Яндекса в новом окне открывается Дзен"""
         main_page = MainPage(driver)
         
-        # Получаем текущее окно
-        original_window = driver.current_window_handle
+        # Кликаем на логотип Яндекса и переключаемся на новое окно
+        main_page.click_yandex_logo_and_switch_to_new_window()
         
-        # Кликаем на логотип Яндекса
-        main_page.click_yandex_logo()
-        
-        # Ждём открытия нового окна
-        WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
-        
-        # Переключаемся на новое окно
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
-        
-        # Проверяем URL нового окна
-        WebDriverWait(driver, 10).until(EC.url_contains('dzen.ru'))
-        current_url = driver.current_url
-        assert 'dzen.ru' in current_url
-        
+        # Проверяем, что открыт Дзен
+        main_page.assert_dzen_opened()

@@ -3,9 +3,9 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     """Локаторы главной страницы"""
-    # Кнопки заказа - исправляем локаторы
-    ORDER_BUTTON_TOP = [By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']"]
-    ORDER_BUTTON_BOTTOM = [By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']"]
+    
+    # Кнопки заказа
+    ORDER_BUTTON = [By.XPATH, "//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']"]
     
     # Вопросы в разделе "Вопросы о важном"
     QUESTION_1 = [By.ID, "accordion__heading-0"]
@@ -31,3 +31,5 @@ class MainPageLocators:
     SCOOTER_LOGO = [By.XPATH, "//img[@alt='Scooter']"]
     YANDEX_LOGO = [By.XPATH, "//img[@alt='Yandex']"]
     
+    # Cookie-баннер
+    COOKIE_BUTTON = [By.XPATH, "//button[text()='да все привыкли']"]
