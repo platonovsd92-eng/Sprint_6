@@ -1,0 +1,2 @@
+✅ geckodriver найден: C:\Проекты VS Code\Sprint_6\tests\..\drivers\geckodriver.exe
+✅ Firefox найден: C:\Program Files\Mozilla Firefox\firefox.exe
